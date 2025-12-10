@@ -48,7 +48,7 @@
             border: 1px solid #ddd;
             border-radius: 8px;
             padding: 20px;
-            width: 28px;
+            width: 280px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
         }
@@ -56,15 +56,13 @@
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
         }
-        /* --- CHANGE START: Set image size to 10% of container width (28px) --- */
         .product-item img {
-            width: 28px; /* 10% of the 280px .product-item width */
+            width: 100%; /* Reverting to original size CSS */
             height: auto;
             border-radius: 4px;
             margin-bottom: 15px;
-            background-color: #eee;
+            background-color: #eee; /* Placeholder background */
         }
-        /* --- CHANGE END --- */
         .contact-info {
             background-color: #0056b3; /* Blue footer background */
             color: #ffffff; /* White text */
@@ -89,7 +87,7 @@
         <ul class="product-list">
             
             <li class="product-item">
-                <img src="images/Paper Plates.jpg" alt="9 Inch Pizza Paper Plates"> 
+                 
                 <h4>9 Inch Pizza Paper Plates</h4>
                 <p>Heavy-duty, grease-resistant plates perfect for single servings of pizza and large entrees.</p>
             </li>
@@ -107,7 +105,7 @@
             </li>
 
             <li class="product-item">
-                <img src="images/bagasse-plate-tray.jpg" alt="Eco-friendly Bagasse Plates and Trays">
+                
                 <h4>Bagasse Plates - Round & Compartment</h4>
                 <p>Eco-friendly, compostable plates made from sugarcane fiber. Available in various sizes and 3-compartment/4-compartment designs.</p>
             </li>
