@@ -51,3 +51,79 @@
             width: 280px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
+        }
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        /* --- CHANGE START: Set image size to 10% of container width (28px) --- */
+        .product-item img {
+            width: 28px; /* 10% of the 280px .product-item width */
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            background-color: #eee;
+        }
+        /* --- CHANGE END --- */
+        .contact-info {
+            background-color: #0056b3; /* Blue footer background */
+            color: #ffffff; /* White text */
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+        .contact-info a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>PerfectTrading.Net LLC</h1>
+        <h2>Your Trusted Supplier of Premium Disposable Products</h2>
+    </div>
+
+    <div class="container">
+        <h3>Our Product Range</h3>
+        <ul class="product-list">
+            
+            <li class="product-item">
+                <img src="images/Paper Plates.jpg" alt="9 Inch Pizza Paper Plates"> 
+                <h4>9 Inch Pizza Paper Plates</h4>
+                <p>Heavy-duty, grease-resistant plates perfect for single servings of pizza and large entrees.</p>
+            </li>
+
+            <li class="product-item">
+                
+                <h4>Paper Cups (Hot & Cold)</h4>
+                <p>Available in various sizes for both hot beverages (coffee, tea) and cold drinks. Customizable options available.</p>
+            </li>
+
+            <li class="product-item">
+                
+                <h4>High-Quality Paper Napkins</h4>
+                <p>Premium, absorbent paper napkins in multiple folds and ply options for restaurant and catering needs.</p>
+            </li>
+
+            <li class="product-item">
+                <img src="images/bagasse-plate-tray.jpg" alt="Eco-friendly Bagasse Plates and Trays">
+                <h4>Bagasse Plates - Round & Compartment</h4>
+                <p>Eco-friendly, compostable plates made from sugarcane fiber. Available in various sizes and 3-compartment/4-compartment designs.</p>
+            </li>
+            
+        </ul>
+
+        <p style="margin-top: 50px; font-size: 1.2em;">
+            We offer competitive pricing and flexible logistics for all your wholesale disposable product needs.
+        </p>
+    </div>
+
+    <div class="contact-info">
+        <p>Inquiries and Orders:</p>
+        <p>Email: <a href="mailto:perfecttrading.net@gmail.com">perfecttrading.net@gmail.com</a></p>
+        <p>Domain: perfecttrading.net</p>
+    </div>
+
+</body>
+</html>
