@@ -648,10 +648,13 @@
         </div>
         
         <div class="hero-image">
-            <div class="hero-image-container">
-                <img src="images/plates.jpg" alt="Plates and Dishes - Multiple Sizes" style="width: 100%; height: 100%; object-fit: cover;">
-            </div>
-        </div>
+    <div class="hero-image-container" style="background-color: var(--sand);">
+        <img src="images/plates.jpg" 
+             alt="Premium Bagasse Plates" 
+             style="width: 100%; height: 500px; object-fit: cover; display: block;"
+             onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding:100px; text-align:center; font-family:Lora;\'>Image Not Found<br><small>Check: images/plates.jpg</small></div>';">
+    </div>
+</div>
     </section>
 
     <section class="features">
