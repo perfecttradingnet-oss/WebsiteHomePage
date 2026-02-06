@@ -1,864 +1,1727 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfect Trading LLC - Premium Bagasse Products</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --earth-dark: #2d3e28;
-            --earth-green: #4a6741;
-            --sage: #8b9d83;
-            --cream: #f5f3ed;
-            --sand: #e8e4d9;
-            --wheat: #d4c5a9;
-            --accent: #b8956a;
-            --white: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            background: var(--cream);
-            color: var(--earth-dark);
-            overflow-x: hidden;
-        }
-
-        /* Organic background texture */
-        .bg-texture {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.03;
-            pointer-events: none;
-            background-image: 
-                radial-gradient(circle at 20% 50%, var(--earth-green) 1px, transparent 1px),
-                radial-gradient(circle at 80% 80%, var(--sage) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 0;
-        }
-
-        /* Header */
-        header {
-            position: relative;
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(135deg, var(--cream) 0%, var(--sand) 100%);
-            border-bottom: 1px solid rgba(74, 103, 65, 0.1);
-            z-index: 100;
-        }
-
-        .logo {
-            font-family: 'Lora', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--earth-dark);
-            letter-spacing: -0.02em;
-        }
-
-        .logo span {
-            color: var(--earth-green);
-        }
-
-        nav {
-            display: flex;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--earth-dark);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--earth-green);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        .cta-button {
-            background: var(--earth-green);
-            color: var(--white);
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .cta-button:hover {
-            background: var(--earth-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(45, 62, 40, 0.2);
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            padding: 8rem 5% 6rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            z-index: 1;
-            animation: fadeIn 1s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-content h1 {
-            font-family: 'Lora', serif;
-            font-size: 4rem;
-            font-weight: 700;
-            line-height: 1.1;
-            color: var(--earth-dark);
-            margin-bottom: 1.5rem;
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .hero-content h1 .highlight {
-            color: var(--earth-green);
-            position: relative;
-            display: inline-block;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: var(--sage);
-            margin-bottom: 2.5rem;
-            font-weight: 300;
-            animation: slideInLeft 0.8s ease-out 0.2s both;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
-            animation: slideInLeft 0.8s ease-out 0.4s both;
-        }
-
-        .stat {
-            text-align: left;
-        }
-
-        .stat-number {
-            font-family: 'Lora', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--earth-green);
-            display: block;
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--sage);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-top: 0.5rem;
-        }
-
-        .hero-image {
-            position: relative;
-            animation: slideInRight 0.8s ease-out 0.3s both;
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .hero-image-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(45, 62, 40, 0.15);
-        }
-
-        .hero-image-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(74, 103, 65, 0.1) 0%, transparent 100%);
-            z-index: 1;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Features Section */
-        .features {
-            position: relative;
-            padding: 6rem 5%;
-            background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
-            z-index: 1;
-        }
-
-        .features h2 {
-            font-family: 'Lora', serif;
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--earth-dark);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(74, 103, 65, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--earth-green), var(--sage));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .feature-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(45, 62, 40, 0.15);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-family: 'Lora', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--earth-dark);
-        }
-
-        .feature-card p {
-            color: var(--sage);
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        /* Products Section */
-        .products {
-            position: relative;
-            padding: 6rem 5%;
-            z-index: 1;
-        }
-
-        .products h2 {
-            font-family: 'Lora', serif;
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 1rem;
-            color: var(--earth-dark);
-        }
-
-        .products-subtitle {
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--sage);
-            margin-bottom: 4rem;
-            font-weight: 300;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(74, 103, 65, 0.1);
-            cursor: pointer;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(45, 62, 40, 0.2);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 280px;
-            background: linear-gradient(135deg, var(--sand) 0%, var(--wheat) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--earth-green);
-            color: var(--white);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .product-info {
-            padding: 2rem;
-        }
-
-        .product-info h3 {
-            font-family: 'Lora', serif;
-            font-size: 1.6rem;
-            margin-bottom: 0.75rem;
-            color: var(--earth-dark);
-        }
-
-        .product-info p {
-            color: var(--sage);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .product-specs {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .spec-tag {
-            background: var(--sand);
-            color: var(--earth-green);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            position: relative;
-            padding: 8rem 5%;
-            background: linear-gradient(135deg, var(--earth-green) 0%, var(--earth-dark) 100%);
-            text-align: center;
-            z-index: 1;
-        }
-
-        .cta-section h2 {
-            font-family: 'Lora', serif;
-            font-size: 3.5rem;
-            color: var(--white);
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section p {
-            font-size: 1.3rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 300;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: var(--white);
-            color: var(--earth-dark);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            border: none;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            border: 2px solid var(--white);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-secondary:hover {
-            background: var(--white);
-            color: var(--earth-dark);
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        footer {
-            position: relative;
-            padding: 4rem 5% 2rem;
-            background: var(--earth-dark);
-            color: rgba(255, 255, 255, 0.8);
-            z-index: 1;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-            max-width: 1400px;
-            margin: 0 auto 3rem;
-        }
-
-        .footer-brand {
-            font-family: 'Lora', serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--white);
-            margin-bottom: 1rem;
-        }
-
-        .footer-brand span {
-            color: var(--sage);
-        }
-
-        .footer-description {
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-section h4 {
-            color: var(--white);
-            font-family: 'Lora', serif;
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-section ul li a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section ul li a:hover {
-            color: var(--white);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 968px) {
-            .hero {
-                grid-template-columns: 1fr;
-                padding: 4rem 5% 3rem;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero-image {
-                order: -1;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            nav {
-                display: none;
-            }
-        }
-
-        /* Scroll animations */
-        .fade-in-up {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .stagger-1 { animation-delay: 0.1s; }
-        .stagger-2 { animation-delay: 0.2s; }
-        .stagger-3 { animation-delay: 0.3s; }
-        .stagger-4 { animation-delay: 0.4s; }
-        .stagger-5 { animation-delay: 0.5s; }
-        .stagger-6 { animation-delay: 0.6s; }
-    </style>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Perfect Trading LLC - Premium Bagasse Products</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        :root {
+
+            --earth-dark: #2d3e28;
+
+            --earth-green: #4a6741;
+
+            --sage: #8b9d83;
+
+            --cream: #f5f3ed;
+
+            --sand: #e8e4d9;
+
+            --wheat: #d4c5a9;
+
+            --accent: #b8956a;
+
+            --white: #ffffff;
+
+        }
+
+
+
+        * {
+
+            margin: 0;
+
+            padding: 0;
+
+            box-sizing: border-box;
+
+        }
+
+
+
+        body {
+
+            font-family: 'Manrope', sans-serif;
+
+            background: var(--cream);
+
+            color: var(--earth-dark);
+
+            overflow-x: hidden;
+
+        }
+
+
+
+        /* Organic background texture */
+
+        .bg-texture {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            opacity: 0.03;
+
+            pointer-events: none;
+
+            background-image: 
+
+                radial-gradient(circle at 20% 50%, var(--earth-green) 1px, transparent 1px),
+
+                radial-gradient(circle at 80% 80%, var(--sage) 1px, transparent 1px);
+
+            background-size: 50px 50px;
+
+            z-index: 0;
+
+        }
+
+
+
+        /* Header */
+
+        header {
+
+            position: relative;
+
+            padding: 2rem 5%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            background: linear-gradient(135deg, var(--cream) 0%, var(--sand) 100%);
+
+            border-bottom: 1px solid rgba(74, 103, 65, 0.1);
+
+            z-index: 100;
+
+        }
+
+
+
+        .logo {
+
+            font-family: 'Lora', serif;
+
+            font-size: 2rem;
+
+            font-weight: 700;
+
+            color: var(--earth-dark);
+
+            letter-spacing: -0.02em;
+
+        }
+
+
+
+        .logo span {
+
+            color: var(--earth-green);
+
+        }
+
+
+
+        nav {
+
+            display: flex;
+
+            gap: 2.5rem;
+
+            align-items: center;
+
+        }
+
+
+
+        nav a {
+
+            text-decoration: none;
+
+            color: var(--earth-dark);
+
+            font-weight: 500;
+
+            font-size: 0.95rem;
+
+            transition: color 0.3s ease;
+
+            position: relative;
+
+        }
+
+
+
+        nav a::after {
+
+            content: '';
+
+            position: absolute;
+
+            bottom: -5px;
+
+            left: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: var(--earth-green);
+
+            transition: width 0.3s ease;
+
+        }
+
+
+
+        nav a:hover::after {
+
+            width: 100%;
+
+        }
+
+
+
+        .cta-button {
+
+            background: var(--earth-green);
+
+            color: var(--white);
+
+            padding: 0.75rem 2rem;
+
+            border-radius: 50px;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+            transition: all 0.3s ease;
+
+            text-decoration: none;
+
+        }
+
+
+
+        .cta-button:hover {
+
+            background: var(--earth-dark);
+
+            transform: translateY(-2px);
+
+            box-shadow: 0 8px 20px rgba(45, 62, 40, 0.2);
+
+        }
+
+
+
+        /* Hero Section */
+
+        .hero {
+
+            position: relative;
+
+            padding: 8rem 5% 6rem;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 4rem;
+
+            align-items: center;
+
+            z-index: 1;
+
+            animation: fadeIn 1s ease-out;
+
+        }
+
+
+
+        @keyframes fadeIn {
+
+            from { opacity: 0; transform: translateY(30px); }
+
+            to { opacity: 1; transform: translateY(0); }
+
+        }
+
+
+
+        .hero-content h1 {
+
+            font-family: 'Lora', serif;
+
+            font-size: 4rem;
+
+            font-weight: 700;
+
+            line-height: 1.1;
+
+            color: var(--earth-dark);
+
+            margin-bottom: 1.5rem;
+
+            animation: slideInLeft 0.8s ease-out;
+
+        }
+
+
+
+        @keyframes slideInLeft {
+
+            from { opacity: 0; transform: translateX(-50px); }
+
+            to { opacity: 1; transform: translateX(0); }
+
+        }
+
+
+
+        .hero-content h1 .highlight {
+
+            color: var(--earth-green);
+
+            position: relative;
+
+            display: inline-block;
+
+        }
+
+
+
+        .hero-content p {
+
+            font-size: 1.2rem;
+
+            line-height: 1.8;
+
+            color: var(--sage);
+
+            margin-bottom: 2.5rem;
+
+            font-weight: 300;
+
+            animation: slideInLeft 0.8s ease-out 0.2s both;
+
+        }
+
+
+
+        .hero-stats {
+
+            display: flex;
+
+            gap: 3rem;
+
+            margin-top: 3rem;
+
+            animation: slideInLeft 0.8s ease-out 0.4s both;
+
+        }
+
+
+
+        .stat {
+
+            text-align: left;
+
+        }
+
+
+
+        .stat-number {
+
+            font-family: 'Lora', serif;
+
+            font-size: 2.5rem;
+
+            font-weight: 700;
+
+            color: var(--earth-green);
+
+            display: block;
+
+        }
+
+
+
+        .stat-label {
+
+            font-size: 0.9rem;
+
+            color: var(--sage);
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.1em;
+
+            margin-top: 0.5rem;
+
+        }
+
+
+
+        .hero-image {
+
+            position: relative;
+
+            animation: slideInRight 0.8s ease-out 0.3s both;
+
+        }
+
+
+
+        @keyframes slideInRight {
+
+            from { opacity: 0; transform: translateX(50px); }
+
+            to { opacity: 1; transform: translateX(0); }
+
+        }
+
+
+
+        .hero-image-container {
+
+            position: relative;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            box-shadow: 0 20px 60px rgba(45, 62, 40, 0.15);
+
+        }
+
+
+
+        .hero-image-container::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: linear-gradient(135deg, rgba(74, 103, 65, 0.1) 0%, transparent 100%);
+
+            z-index: 1;
+
+        }
+
+
+
+        .hero-image img {
+
+            width: 100%;
+
+            height: 500px;
+
+            object-fit: cover;
+
+            display: block;
+
+        }
+
+
+
+        /* Features Section */
+
+        .features {
+
+            position: relative;
+
+            padding: 6rem 5%;
+
+            background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
+
+            z-index: 1;
+
+        }
+
+
+
+        .features h2 {
+
+            font-family: 'Lora', serif;
+
+            font-size: 3rem;
+
+            text-align: center;
+
+            margin-bottom: 4rem;
+
+            color: var(--earth-dark);
+
+        }
+
+
+
+        .features-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 3rem;
+
+            max-width: 1200px;
+
+            margin: 0 auto;
+
+        }
+
+
+
+        .feature-card {
+
+            background: var(--white);
+
+            padding: 2.5rem;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            transition: all 0.4s ease;
+
+            border: 1px solid rgba(74, 103, 65, 0.1);
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .feature-card::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 4px;
+
+            background: linear-gradient(90deg, var(--earth-green), var(--sage));
+
+            transform: scaleX(0);
+
+            transition: transform 0.4s ease;
+
+        }
+
+
+
+        .feature-card:hover::before {
+
+            transform: scaleX(1);
+
+        }
+
+
+
+        .feature-card:hover {
+
+            transform: translateY(-10px);
+
+            box-shadow: 0 20px 40px rgba(45, 62, 40, 0.15);
+
+        }
+
+
+
+        .feature-icon {
+
+            font-size: 3rem;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .feature-card h3 {
+
+            font-family: 'Lora', serif;
+
+            font-size: 1.5rem;
+
+            margin-bottom: 1rem;
+
+            color: var(--earth-dark);
+
+        }
+
+
+
+        .feature-card p {
+
+            color: var(--sage);
+
+            line-height: 1.6;
+
+            font-weight: 300;
+
+        }
+
+
+
+        /* Products Section */
+
+        .products {
+
+            position: relative;
+
+            padding: 6rem 5%;
+
+            z-index: 1;
+
+        }
+
+
+
+        .products h2 {
+
+            font-family: 'Lora', serif;
+
+            font-size: 3rem;
+
+            text-align: center;
+
+            margin-bottom: 1rem;
+
+            color: var(--earth-dark);
+
+        }
+
+
+
+        .products-subtitle {
+
+            text-align: center;
+
+            font-size: 1.1rem;
+
+            color: var(--sage);
+
+            margin-bottom: 4rem;
+
+            font-weight: 300;
+
+        }
+
+
+
+        .products-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 2.5rem;
+
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+        }
+
+
+
+        .product-card {
+
+            background: var(--white);
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            transition: all 0.4s ease;
+
+            border: 1px solid rgba(74, 103, 65, 0.1);
+
+            cursor: pointer;
+
+            position: relative;
+
+        }
+
+
+
+        .product-card:hover {
+
+            transform: translateY(-8px) scale(1.02);
+
+            box-shadow: 0 25px 50px rgba(45, 62, 40, 0.2);
+
+        }
+
+
+
+        .product-image {
+
+            width: 100%;
+
+            height: 280px;
+
+            background: linear-gradient(135deg, var(--sand) 0%, var(--wheat) 100%);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 5rem;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+
+        .product-image::before {
+
+            content: '';
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
+
+        }
+
+
+
+        .product-badge {
+
+            position: absolute;
+
+            top: 1rem;
+
+            right: 1rem;
+
+            background: var(--earth-green);
+
+            color: var(--white);
+
+            padding: 0.4rem 1rem;
+
+            border-radius: 20px;
+
+            font-size: 0.75rem;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.05em;
+
+        }
+
+
+
+        .product-info {
+
+            padding: 2rem;
+
+        }
+
+
+
+        .product-info h3 {
+
+            font-family: 'Lora', serif;
+
+            font-size: 1.6rem;
+
+            margin-bottom: 0.75rem;
+
+            color: var(--earth-dark);
+
+        }
+
+
+
+        .product-info p {
+
+            color: var(--sage);
+
+            line-height: 1.6;
+
+            margin-bottom: 1.5rem;
+
+            font-weight: 300;
+
+        }
+
+
+
+        .product-specs {
+
+            display: flex;
+
+            gap: 1rem;
+
+            flex-wrap: wrap;
+
+        }
+
+
+
+        .spec-tag {
+
+            background: var(--sand);
+
+            color: var(--earth-green);
+
+            padding: 0.4rem 1rem;
+
+            border-radius: 20px;
+
+            font-size: 0.85rem;
+
+            font-weight: 500;
+
+        }
+
+
+
+        /* CTA Section */
+
+        .cta-section {
+
+            position: relative;
+
+            padding: 8rem 5%;
+
+            background: linear-gradient(135deg, var(--earth-green) 0%, var(--earth-dark) 100%);
+
+            text-align: center;
+
+            z-index: 1;
+
+        }
+
+
+
+        .cta-section h2 {
+
+            font-family: 'Lora', serif;
+
+            font-size: 3.5rem;
+
+            color: var(--white);
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .cta-section p {
+
+            font-size: 1.3rem;
+
+            color: rgba(255, 255, 255, 0.9);
+
+            margin-bottom: 3rem;
+
+            max-width: 700px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+            font-weight: 300;
+
+        }
+
+
+
+        .cta-buttons {
+
+            display: flex;
+
+            gap: 1.5rem;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+        }
+
+
+
+        .btn-primary {
+
+            background: var(--white);
+
+            color: var(--earth-dark);
+
+            padding: 1rem 2.5rem;
+
+            border-radius: 50px;
+
+            border: none;
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+            font-size: 1.1rem;
+
+            transition: all 0.3s ease;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+        }
+
+
+
+        .btn-primary:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+
+        }
+
+
+
+        .btn-secondary {
+
+            background: transparent;
+
+            color: var(--white);
+
+            padding: 1rem 2.5rem;
+
+            border-radius: 50px;
+
+            border: 2px solid var(--white);
+
+            cursor: pointer;
+
+            font-weight: 600;
+
+            font-size: 1.1rem;
+
+            transition: all 0.3s ease;
+
+            text-decoration: none;
+
+            display: inline-block;
+
+        }
+
+
+
+        .btn-secondary:hover {
+
+            background: var(--white);
+
+            color: var(--earth-dark);
+
+            transform: translateY(-3px);
+
+        }
+
+
+
+        /* Footer */
+
+        footer {
+
+            position: relative;
+
+            padding: 4rem 5% 2rem;
+
+            background: var(--earth-dark);
+
+            color: rgba(255, 255, 255, 0.8);
+
+            z-index: 1;
+
+        }
+
+
+
+        .footer-content {
+
+            display: grid;
+
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+
+            gap: 3rem;
+
+            max-width: 1400px;
+
+            margin: 0 auto 3rem;
+
+        }
+
+
+
+        .footer-brand {
+
+            font-family: 'Lora', serif;
+
+            font-size: 2rem;
+
+            font-weight: 700;
+
+            color: var(--white);
+
+            margin-bottom: 1rem;
+
+        }
+
+
+
+        .footer-brand span {
+
+            color: var(--sage);
+
+        }
+
+
+
+        .footer-description {
+
+            line-height: 1.8;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .footer-section h4 {
+
+            color: var(--white);
+
+            font-family: 'Lora', serif;
+
+            font-size: 1.2rem;
+
+            margin-bottom: 1.5rem;
+
+        }
+
+
+
+        .footer-section ul {
+
+            list-style: none;
+
+        }
+
+
+
+        .footer-section ul li {
+
+            margin-bottom: 0.75rem;
+
+        }
+
+
+
+        .footer-section ul li a {
+
+            color: rgba(255, 255, 255, 0.7);
+
+            text-decoration: none;
+
+            transition: color 0.3s ease;
+
+        }
+
+
+
+        .footer-section ul li a:hover {
+
+            color: var(--white);
+
+        }
+
+
+
+        .footer-bottom {
+
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+            padding-top: 2rem;
+
+            text-align: center;
+
+            color: rgba(255, 255, 255, 0.6);
+
+        }
+
+
+
+        /* Responsive Design */
+
+        @media (max-width: 968px) {
+
+            .hero {
+
+                grid-template-columns: 1fr;
+
+                padding: 4rem 5% 3rem;
+
+            }
+
+
+
+            .hero-content h1 {
+
+                font-size: 2.5rem;
+
+            }
+
+
+
+            .hero-image {
+
+                order: -1;
+
+            }
+
+
+
+            .features-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+
+            .products-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+
+            .footer-content {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+
+            nav {
+
+                display: none;
+
+            }
+
+        }
+
+
+
+        /* Scroll animations */
+
+        .fade-in-up {
+
+            opacity: 0;
+
+            animation: fadeInUp 0.8s ease-out forwards;
+
+        }
+
+
+
+        @keyframes fadeInUp {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(30px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+
+            }
+
+        }
+
+
+
+        .stagger-1 { animation-delay: 0.1s; }
+
+        .stagger-2 { animation-delay: 0.2s; }
+
+        .stagger-3 { animation-delay: 0.3s; }
+
+        .stagger-4 { animation-delay: 0.4s; }
+
+        .stagger-5 { animation-delay: 0.5s; }
+
+        .stagger-6 { animation-delay: 0.6s; }
+
+    </style>
+
 </head>
+
 <body>
-    <div class="bg-texture"></div>
 
-    <header>
-        <div class="logo">Perfect<span>Trading</span></div>
-        <nav>
-            <a href="#home">Home</a>
-            <a href="#products">Products</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <a href="#contact" class="cta-button">Get Quote</a>
-        </nav>
-    </header>
+    <div class="bg-texture"></div>
 
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Sustainable <span class="highlight">Bagasse</span> Solutions for a Greener Tomorrow</h1>
-            <p>Premium eco-friendly tableware crafted from sugarcane fiber. Biodegradable, compostable, and designed for the conscious consumer.</p>
-            <a href="#contact" class="cta-button">Request Catalog</a>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Biodegradable</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">60 Days</span>
-                    <span class="stat-label">Compost Time</span>
-                </div>
-                <div class="stat">
-                    <span class="stat-number">0%</span>
-                    <span class="stat-label">Plastic Used</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="hero-image">
-    <div class="hero-image-container" style="background-color: var(--sand);">
-        <img src="images/plates.jpg" 
-             alt="Premium Bagasse Plates" 
-             style="width: 100%; height: 500px; object-fit: cover; display: block;"
-             onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding:100px; text-align:center; font-family:Lora;\'>Image Not Found<br><small>Check: images/plates.jpg</small></div>';">
-    </div>
+
+
+    <header>
+
+        <div class="logo">Perfect<span>Trading</span></div>
+
+        <nav>
+
+            <a href="#home">Home</a>
+
+            <a href="#products">Products</a>
+
+            <a href="#about">About</a>
+
+            <a href="#contact">Contact</a>
+
+            <a href="#contact" class="cta-button">Get Quote</a>
+
+        </nav>
+
+    </header>
+
+
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>Sustainable <span class="highlight">Bagasse</span> Solutions for a Greener Tomorrow</h1>
+
+            <p>Premium eco-friendly tableware crafted from sugarcane fiber. Biodegradable, compostable, and designed for the conscious consumer.</p>
+
+            <a href="#contact" class="cta-button">Request Catalog</a>
+
+            
+
+            <div class="hero-stats">
+
+                <div class="stat">
+
+                    <span class="stat-number">100%</span>
+
+                    <span class="stat-label">Biodegradable</span>
+
+                </div>
+
+                <div class="stat">
+
+                    <span class="stat-number">60 Days</span>
+
+                    <span class="stat-label">Compost Time</span>
+
+                </div>
+
+                <div class="stat">
+
+                    <span class="stat-number">0%</span>
+
+                    <span class="stat-label">Plastic Used</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        <div class="hero-image">
+
+    <div class="hero-image-container" style="background-color: var(--sand);">
+
+        <img src="images/plates.jpg" 
+
+             alt="Premium Bagasse Plates" 
+
+             style="width: 100%; height: 500px; object-fit: cover; display: block;"
+
+             onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'padding:100px; text-align:center; font-family:Lora;\'>Image Not Found<br><small>Check: images/plates.jpg</small></div>';">
+
+    </div>
+
 </div>
-    </section>
 
-    <section class="features">
-        <h2>Why Choose Bagasse?</h2>
-        <div class="features-grid">
-            <div class="feature-card fade-in-up stagger-1">
-                <div class="feature-icon">🌱</div>
-                <h3>100% Compostable</h3>
-                <p>Breaks down naturally in 60-90 days, returning nutrients to the earth without harmful residues.</p>
-            </div>
-            <div class="feature-card fade-in-up stagger-2">
-                <div class="feature-icon">♻️</div>
-                <h3>Renewable Resource</h3>
-                <p>Made from sugarcane pulp, a rapidly renewable agricultural byproduct that would otherwise be waste.</p>
-            </div>
-            <div class="feature-card fade-in-up stagger-3">
-                <div class="feature-icon">💪</div>
-                <h3>Durable & Strong</h3>
-                <p>Heat-resistant up to 200°F, microwave-safe, and leak-resistant for all your serving needs.</p>
-            </div>
-        </div>
-    </section>
+    </section>
 
-    <section class="products" id="products">
-        <h2>Our Product Range</h2>
-        <p class="products-subtitle">Comprehensive solutions for sustainable food service</p>
-        
-        <div class="products-grid">
-            <div class="product-card fade-in-up stagger-1">
-                <div class="product-image">
-                    <span>🍽️</span>
-                    <div class="product-badge">Bestseller</div>
-                </div>
-                <div class="product-info">
-                    <h3>Plates & Dishes</h3>
-                    <p>Round and square plates in multiple sizes, perfect for any meal service. Oil and cut-resistant.</p>
-                    <div class="product-specs">
-                        <span class="spec-tag">6" - 12"</span>
-                        <span class="spec-tag">Compartment Options</span>
-                        <span class="spec-tag">Microwave Safe</span>
-                    </div>
-                </div>
-            </div>
 
-            <div class="product-card fade-in-up stagger-2">
-                <div class="product-image">
-                    <span>🥣</span>
-                </div>
-                <div class="product-info">
-                    <h3>Bowls & Containers</h3>
-                    <p>Deep bowls and food containers ideal for soups, salads, and takeaway meals with secure lids.</p>
-                    <div class="product-specs">
-                        <span class="spec-tag">300ml - 1000ml</span>
-                        <span class="spec-tag">Leak-Proof</span>
-                        <span class="spec-tag">Stackable</span>
-                    </div>
-                </div>
-            </div>
 
-            <div class="product-card fade-in-up stagger-3">
-                <div class="product-image">
-                    <span>🥤</span>
-                </div>
-                <div class="product-info">
-                    <h3>Cups & Glasses</h3>
-                    <p>Hot and cold beverage cups with matching lids. Perfect for coffee shops and events.</p>
-                    <div class="product-specs">
-                        <span class="spec-tag">8oz - 16oz</span>
-                        <span class="spec-tag">Insulated</span>
-                        <span class="spec-tag">No Lining Needed</span>
-                    </div>
-                </div>
-            </div>
+    <section class="features">
 
-            <div class="product-card fade-in-up stagger-4">
-                <div class="product-image">
-                    <span>🍴</span>
-                </div>
-                <div class="product-info">
-                    <h3>Cutlery Sets</h3>
-                    <p>Sturdy forks, spoons, and knives that don't bend or break. Complete your eco-friendly setup.</p>
-                    <div class="product-specs">
-                        <span class="spec-tag">Individual/Sets</span>
-                        <span class="spec-tag">Heat Resistant</span>
-                        <span class="spec-tag">Smooth Finish</span>
-                    </div>
-                </div>
-            </div>
+        <h2>Why Choose Bagasse?</h2>
 
-            <div class="product-card fade-in-up stagger-5">
-                <div class="product-image">
-                    <span>📦</span>
-                    <div class="product-badge">New</div>
-                </div>
-                <div class="product-info">
-                    <h3>Takeout Boxes</h3>
-                    <p>Clamshell and hinged containers for restaurants and food delivery services. Grease-resistant.</p>
-                    <div class="product-specs">
-                        <span class="spec-tag">Various Sizes</span>
-                        <span class="spec-tag">Secure Closure</span>
-                        <span class="spec-tag">Freezer Safe</span>
-                    </div>
-                </div>
-            </div>
+        <div class="features-grid">
 
-            <div class="product-card fade-in-up stagger-6">
-                <div class="product-image">
-                    <span>🎉</span>
-                </div>
-                <div class="product-info">
-                    <h3>Party & Event Sets</h3>
-                    <p>Comprehensive party packs including plates, bowls, cups, and cutlery for eco-conscious celebrations.</p>
-                    <div class="product-specs">
-                        <span class="spec-tag">Bulk Available</span>
-                        <span class="spec-tag">Customizable</span>
-                        <span class="spec-tag">Premium Quality</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="feature-card fade-in-up stagger-1">
 
-    <section class="cta-section" id="contact">
-        <h2>Ready to Make the Switch?</h2>
-        <p>Join thousands of businesses choosing sustainable alternatives. Get in touch for custom quotes, bulk orders, and partnership opportunities.</p>
-        <div class="cta-buttons">
-            <a href="mailto:sales@perfecttrading.net" class="btn-primary">Contact Sales</a>
-            <a href="tel:+1234567890" class="btn-secondary">Call Us Now</a>
-        </div>
-    </section>
+                <div class="feature-icon">🌱</div>
 
-    <footer>
-        <div class="footer-content">
-            <div>
-                <div class="footer-brand">Perfect<span>Trading</span></div>
-                <p class="footer-description">Leading the way in sustainable food service solutions with premium bagasse products. Committed to a plastic-free future.</p>
-            </div>
-            <div class="footer-section">
-                <h4>Products</h4>
-                <ul>
-                    <li><a href="#products">Plates & Dishes</a></li>
-                    <li><a href="#products">Bowls</a></li>
-                    <li><a href="#products">Cups</a></li>
-                    <li><a href="#products">Cutlery</a></li>
-                    <li><a href="#products">Takeout Boxes</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#sustainability">Sustainability</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#shipping">Shipping Info</a></li>
-                    <li><a href="#returns">Returns</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Perfect Trading LLC. All rights reserved. | Crafted with care for our planet 🌍</p>
-        </div>
-    </footer>
+                <h3>100% Compostable</h3>
 
-    <script>
-        // Scroll animation observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+                <p>Breaks down naturally in 60-90 days, returning nutrients to the earth without harmful residues.</p>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+            </div>
 
-        document.querySelectorAll('.fade-in-up').forEach((el) => {
-            observer.observe(el);
-        });
+            <div class="feature-card fade-in-up stagger-2">
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+                <div class="feature-icon">♻️</div>
+
+                <h3>Renewable Resource</h3>
+
+                <p>Made from sugarcane pulp, a rapidly renewable agricultural byproduct that would otherwise be waste.</p>
+
+            </div>
+
+            <div class="feature-card fade-in-up stagger-3">
+
+                <div class="feature-icon">💪</div>
+
+                <h3>Durable & Strong</h3>
+
+                <p>Heat-resistant up to 200°F, microwave-safe, and leak-resistant for all your serving needs.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="products" id="products">
+
+        <h2>Our Product Range</h2>
+
+        <p class="products-subtitle">Comprehensive solutions for sustainable food service</p>
+
+        
+
+        <div class="products-grid">
+
+            <div class="product-card fade-in-up stagger-1">
+
+                <div class="product-image">
+
+                    <span>🍽️</span>
+
+                    <div class="product-badge">Bestseller</div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Plates & Dishes</h3>
+
+                    <p>Round and square plates in multiple sizes, perfect for any meal service. Oil and cut-resistant.</p>
+
+                    <div class="product-specs">
+
+                        <span class="spec-tag">6" - 12"</span>
+
+                        <span class="spec-tag">Compartment Options</span>
+
+                        <span class="spec-tag">Microwave Safe</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="product-card fade-in-up stagger-2">
+
+                <div class="product-image">
+
+                    <span>🥣</span>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Bowls & Containers</h3>
+
+                    <p>Deep bowls and food containers ideal for soups, salads, and takeaway meals with secure lids.</p>
+
+                    <div class="product-specs">
+
+                        <span class="spec-tag">300ml - 1000ml</span>
+
+                        <span class="spec-tag">Leak-Proof</span>
+
+                        <span class="spec-tag">Stackable</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="product-card fade-in-up stagger-3">
+
+                <div class="product-image">
+
+                    <span>🥤</span>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Cups & Glasses</h3>
+
+                    <p>Hot and cold beverage cups with matching lids. Perfect for coffee shops and events.</p>
+
+                    <div class="product-specs">
+
+                        <span class="spec-tag">8oz - 16oz</span>
+
+                        <span class="spec-tag">Insulated</span>
+
+                        <span class="spec-tag">No Lining Needed</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="product-card fade-in-up stagger-4">
+
+                <div class="product-image">
+
+                    <span>🍴</span>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Cutlery Sets</h3>
+
+                    <p>Sturdy forks, spoons, and knives that don't bend or break. Complete your eco-friendly setup.</p>
+
+                    <div class="product-specs">
+
+                        <span class="spec-tag">Individual/Sets</span>
+
+                        <span class="spec-tag">Heat Resistant</span>
+
+                        <span class="spec-tag">Smooth Finish</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="product-card fade-in-up stagger-5">
+
+                <div class="product-image">
+
+                    <span>📦</span>
+
+                    <div class="product-badge">New</div>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Takeout Boxes</h3>
+
+                    <p>Clamshell and hinged containers for restaurants and food delivery services. Grease-resistant.</p>
+
+                    <div class="product-specs">
+
+                        <span class="spec-tag">Various Sizes</span>
+
+                        <span class="spec-tag">Secure Closure</span>
+
+                        <span class="spec-tag">Freezer Safe</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="product-card fade-in-up stagger-6">
+
+                <div class="product-image">
+
+                    <span>🎉</span>
+
+                </div>
+
+                <div class="product-info">
+
+                    <h3>Party & Event Sets</h3>
+
+                    <p>Comprehensive party packs including plates, bowls, cups, and cutlery for eco-conscious celebrations.</p>
+
+                    <div class="product-specs">
+
+                        <span class="spec-tag">Bulk Available</span>
+
+                        <span class="spec-tag">Customizable</span>
+
+                        <span class="spec-tag">Premium Quality</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="cta-section" id="contact">
+
+        <h2>Ready to Make the Switch?</h2>
+
+        <p>Join thousands of businesses choosing sustainable alternatives. Get in touch for custom quotes, bulk orders, and partnership opportunities.</p>
+
+        <div class="cta-buttons">
+
+            <a href="mailto:sales@perfecttrading.net" class="btn-primary">Contact Sales</a>
+
+            <a href="tel:+1234567890" class="btn-secondary">Call Us Now</a>
+
+        </div>
+
+    </section>
+
+
+
+    <footer>
+
+        <div class="footer-content">
+
+            <div>
+
+                <div class="footer-brand">Perfect<span>Trading</span></div>
+
+                <p class="footer-description">Leading the way in sustainable food service solutions with premium bagasse products. Committed to a plastic-free future.</p>
+
+            </div>
+
+            <div class="footer-section">
+
+                <h4>Products</h4>
+
+                <ul>
+
+                    <li><a href="#products">Plates & Dishes</a></li>
+
+                    <li><a href="#products">Bowls</a></li>
+
+                    <li><a href="#products">Cups</a></li>
+
+                    <li><a href="#products">Cutlery</a></li>
+
+                    <li><a href="#products">Takeout Boxes</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-section">
+
+                <h4>Company</h4>
+
+                <ul>
+
+                    <li><a href="#about">About Us</a></li>
+
+                    <li><a href="#sustainability">Sustainability</a></li>
+
+                    <li><a href="#certifications">Certifications</a></li>
+
+                    <li><a href="#blog">Blog</a></li>
+
+                </ul>
+
+            </div>
+
+            <div class="footer-section">
+
+                <h4>Support</h4>
+
+                <ul>
+
+                    <li><a href="#faq">FAQ</a></li>
+
+                    <li><a href="#shipping">Shipping Info</a></li>
+
+                    <li><a href="#returns">Returns</a></li>
+
+                    <li><a href="#contact">Contact</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+
+            <p>&copy; 2024 Perfect Trading LLC. All rights reserved. | Crafted with care for our planet 🌍</p>
+
+        </div>
+
+    </footer>
+
+
+
+    <script>
+
+        // Scroll animation observer
+
+        const observerOptions = {
+
+            threshold: 0.1,
+
+            rootMargin: '0px 0px -50px 0px'
+
+        };
+
+
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.style.opacity = '1';
+
+                    entry.target.style.transform = 'translateY(0)';
+
+                }
+
+            });
+
+        }, observerOptions);
+
+
+
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+
+            observer.observe(el);
+
+        });
+
+
+
+        // Smooth scrolling for anchor links
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+            anchor.addEventListener('click', function (e) {
+
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+
+                if (target) {
+
+                    target.scrollIntoView({
+
+                        behavior: 'smooth',
+
+                        block: 'start'
+
+                    });
+
+                }
+
+            });
+
+        });
+
+    </script>
+
 </body>
+
 </html>
